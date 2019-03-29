@@ -46,11 +46,11 @@ setInterval(fetch, 3000);
 
 fetch();
 
-$(document).read(function () {
+$(document).ready(function () {
 
     var postContent = function () {
         var uname = $('#uname').text();
-        var content = $('#sendbox').text();
+        var content = $('#sendbox').val();
         $.post("/lp/post", {
             uname: uname,
             content: content

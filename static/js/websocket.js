@@ -1,7 +1,7 @@
 var socket;
 
 $(document).ready(function () {
-    socket = new WebSocket('ws://' + window.location.host + '/ws/join?uname' + $('#uname').text());
+    socket = new WebSocket('ws://' + window.location.host + '/ws/join?uname=' + $('#uname').text());
     socket.onmessage = function (event) {
         var data = JSON.parse(event.data);
         var li = document.createElement('li');
@@ -13,7 +13,7 @@ $(document).ready(function () {
                 if (data.User === $('#uname').text()) {
                     li.innerText = 'You joined the chat room';
                 } else {
-                    li.innerText = data.User + 'joined the chat room'
+                    li.innerText = data.User + ' joined the chat room'
                 }
                 break;
             case 1:
@@ -37,7 +37,6 @@ $(document).ready(function () {
     };
 
     var postContent = function () {
-        var uname = $('#uname').text();
         var content = $('#sendbox').val();
         socket.send(content);
         $('#sendbox').val('');
