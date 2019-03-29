@@ -2,18 +2,12 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/beego/i18n"
-	_ "learn-beego/routers"
-)
-
-const (
-	APP_VER = "1.0"
+	"learn-beego/controllers"
 )
 
 func main() {
-	beego.Info(beego.BConfig.AppName, APP_VER)
-
-	beego.AddFuncMap("i18n", i18n.Tr)
-
+	beego.Router("/", &controllers.MainController{})
+	beego.Router("/v1/shorten", &controllers.ShortController{})
+	beego.Router("/v1/expand", &controllers.ExpandController{})
 	beego.Run()
 }
